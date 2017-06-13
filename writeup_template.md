@@ -10,7 +10,7 @@ The goals of this project are the following:
 [//]: # (Image References)
 [image1]: ./examples/car_not_car.png
 [original]: ./test_images/test1.jpg
-[YCr]: ./output_images/YCr_representation.png
+[YCr]: ./output_images/YCr.png
 [image2]: ./examples/HOG_example.jpg
 [image3]: ./examples/sliding_windows.jpg
 [image4]: ./examples/sliding_window.jpg
