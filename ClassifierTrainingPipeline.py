@@ -7,7 +7,7 @@ __author__ = "Alexander Ponamarev"
 __email__ = "alex.ponamaryov@gmail.com"
 
 from matplotlib import pyplot as plt
-from src.utils import find_cars, add_heat, apply_threshold, draw_labeled_bboxes
+from src.utils import find_cars, add_heat, apply_threshold, draw_labeled_bboxes, draw_bboxes
 from scipy.ndimage.measurements import label
 from moviepy.editor import VideoFileClip
 import numpy as np
@@ -119,6 +119,21 @@ def main():
     scaller = pipeline['scaller']
     classifier = pipeline['classifier']
     feature_config = pipeline['feature_config']
+
+    path = 'test_images/multiscale.png'
+
+    test_img = cv2.cvtColor(cv2.imread(path), cv2.COLOR_BGR2RGB)
+
+    bounding_boxes = find_cars(test_img, 400, 656, 2.0, classifier, scaller,
+                               orient=9, pix_per_cell=8,
+                               cell_per_block=2, cmap="YCr",
+                               spatial_size=(32,32), hist_bins=32)
+
+    test_img = draw_bboxes(test_img, bounding_boxes)
+
+    plt.imshow(test_img)
+
+
 
     vehicle = VehicleDetection(classifier, scaller, feature_config,
                                frame_buffer=8, threshold=10, scales=[1.5, 2.0, 2.5, 3.0])
