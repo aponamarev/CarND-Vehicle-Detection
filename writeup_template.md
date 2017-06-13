@@ -9,6 +9,8 @@ The goals of this project are the following:
 
 [//]: # (Image References)
 [image1]: ./examples/car_not_car.png
+[original]: ./test_images/test1.jpg
+[YCr]: ./output_images/YCr_representation.png
 [image2]: ./examples/HOG_example.jpg
 [image3]: ./examples/sliding_windows.jpg
 [image4]: ./examples/sliding_window.jpg
@@ -28,13 +30,9 @@ The code for this step is contained in the code cells 1-3 of the IPython noteboo
 
 Histogram of Oriented Gradients (HOG) feature extraction consists of two steps: 
   1. Data preprocessing - in order to train SVM classifier I used provided dataset of car and non-car images. The dataset has a relatively small size and can be efficiently processed in RAM. Therefore, I did not implement any methods (generators) for on the fly data processing and rather focused on sequential loading the dataset and preprocessing. The datset consists of 17,770 samples (208Mb). The second code cell describes the procedure of loading the dataset into memory.
-  2. Extract features - convert all images into feature vectors.
-
-Here is an example of one of the `vehicle` classes:
-
-![alt text][image1]
-
-I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
+  2. I then explored different color spaces. YCrCb space seemed to provide a good separation for various objects in color space. The chart below provides representations of the original image and its representation in Y, C, R challens:
+![alt_text][original]
+![alt_text][YCr]
 
 Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
 
